@@ -3,7 +3,7 @@ package top.lanscarlos.vulpecula.applicative
 import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Player
-import taboolib.platform.type.BukkitPlayer
+import taboolib.common.platform.ProxyPlayer
 
 /**
  * Vulpecula
@@ -18,7 +18,7 @@ class PlayerApplicative(source: Any) : AbstractApplicative<Player>(source) {
         return when (source) {
             is Player -> source
             is OfflinePlayer -> source.player
-            is BukkitPlayer -> source.player
+            is ProxyPlayer -> source.castSafely()
             is String -> Bukkit.getPlayerExact(source)
             else -> def
         }

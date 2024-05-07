@@ -23,9 +23,9 @@ import taboolib.library.configuration.ConfigurationSection
  * @author Lanscarlos
  * @since 2024-01-05 12:38
  */
-class DefaultCommandBuilder(val context: DefaultCommand, val id: String, val section: ConfigurationSection) {
+class DefaultCommandComponent(val context: DefaultCommand, val id: String, val section: ConfigurationSection) {
 
-    val children = mutableSetOf<DefaultCommandBuilder>()
+    val children = mutableSetOf<DefaultCommandComponent>()
 
     /**
      * 构建指令

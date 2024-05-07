@@ -41,22 +41,26 @@ interface DynamicConfig {
     fun indexOf(path: String): Int
 
     /**
-     * 获取数据
-     * */
-    operator fun get(path: String): Any?
-
-    /**
      * 读取所有键
      * @param deep 是否深度读取
      * */
-    fun readKeys(deep: Boolean): Set<String>
+    fun getKeys(deep: Boolean): Set<String>
 
     /**
      * 读取所有键
      * @param path 路径
      * @param deep 是否深度读取
      * */
-    fun readKeys(path: String, deep: Boolean): Set<String>
+    fun getKeys(path: String, deep: Boolean): Set<String>
+
+    /**
+     * 获取数据
+     * */
+    operator fun get(path: String): Any?
+
+    fun getString(path: String): String?
+
+    fun getString(path: String, def: String): String
 
     fun read(path: String): DynamicSection<Any?>
 

@@ -9,8 +9,6 @@ package top.lanscarlos.vulpecula.bacikal.quest
  */
 class FragmentReplacer(val mapping: Map<String, String>) : BacikalQuestTransfer {
 
-    override val name = "fragment-replacer"
-
     private val regex = mapping.keys.joinToString(separator = "|", prefix = "\\$\\{(", postfix = ")\\}").toRegex()
 
     override fun transfer(source: StringBuilder) {

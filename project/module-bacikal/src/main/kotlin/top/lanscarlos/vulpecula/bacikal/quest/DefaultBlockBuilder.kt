@@ -135,7 +135,7 @@ class DefaultBlockBuilder(override var name: String) : BacikalBlockBuilder {
     /**
      * 追加内容
      * */
-    override fun StringBuilder.appendSection(section: Any) {
+    fun StringBuilder.appendSection(section: Any) {
         when (section) {
             is String, is StringBuilder, is StringBuffer -> {
                 if (this.isNotEmpty()) {

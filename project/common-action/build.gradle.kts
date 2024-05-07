@@ -1,4 +1,8 @@
 
+taboolib {
+    subproject = true
+}
+
 dependencies {
     compileOnly(project(":project:module-applicative"))
     compileOnly(project(":project:module-config"))

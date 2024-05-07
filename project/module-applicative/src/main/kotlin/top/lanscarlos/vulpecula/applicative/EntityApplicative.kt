@@ -4,7 +4,6 @@ import org.bukkit.Bukkit
 import org.bukkit.OfflinePlayer
 import org.bukkit.entity.Entity
 import taboolib.common.platform.ProxyPlayer
-import taboolib.platform.type.BukkitPlayer
 
 /**
  * Vulpecula
@@ -19,7 +18,7 @@ class EntityApplicative(source: Any) : AbstractApplicative<Entity>(source) {
         return when (source) {
             is Entity -> source
             is OfflinePlayer -> source.player
-            is ProxyPlayer -> (source as? BukkitPlayer)?.player
+            is ProxyPlayer -> source.castSafely()
             is String -> Bukkit.getPlayerExact(source)
             else -> def
         }

@@ -7,9 +7,9 @@ package top.lanscarlos.vulpecula.bacikal.quest
  * @author Lanscarlos
  * @since 2023-08-21 21:27
  */
-class UnicodeEscalator : BacikalQuestTransfer {
+object UnicodeEscalator : BacikalQuestTransfer {
 
-    override val name = "unicode-escalator"
+    val REGEX_UNICODE = "\\\\u([A-Za-z0-9]{4})".toRegex()
 
     override fun transfer(source: StringBuilder) {
         val result = REGEX_UNICODE.replace(source.extract()) {
@@ -18,7 +18,4 @@ class UnicodeEscalator : BacikalQuestTransfer {
         source.append(result)
     }
 
-    companion object {
-        val REGEX_UNICODE = "\\\\u([A-Za-z0-9]{4})".toRegex()
-    }
 }

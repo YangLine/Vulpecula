@@ -40,7 +40,7 @@ interface BacikalQuestBuilder {
     /**
      * 转换器
      * */
-    val transfers: MutableMap<String, BacikalQuestTransfer>
+    val transfers: MutableList<BacikalQuestTransfer>
 
     /**
      * 编译器

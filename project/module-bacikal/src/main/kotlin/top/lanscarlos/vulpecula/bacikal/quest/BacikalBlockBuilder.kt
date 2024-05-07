@@ -59,8 +59,4 @@ interface BacikalBlockBuilder {
      * */
     fun appendLiteral(value: String)
 
-    /**
-     * 追加内容
-     * */
-    fun StringBuilder.appendSection(section: Any)
 }

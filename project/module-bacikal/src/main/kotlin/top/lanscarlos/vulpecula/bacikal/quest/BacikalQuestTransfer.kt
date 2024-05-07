@@ -9,8 +9,6 @@ package top.lanscarlos.vulpecula.bacikal.quest
  */
 interface BacikalQuestTransfer {
 
-    val name: String
-
     fun transfer(source: StringBuilder)
 
     /**

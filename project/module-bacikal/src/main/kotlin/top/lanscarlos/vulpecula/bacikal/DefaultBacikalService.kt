@@ -4,6 +4,7 @@ import taboolib.common.platform.function.warning
 import top.lanscarlos.vulpecula.applicative.StringListApplicative.Companion.applicativeStringList
 import top.lanscarlos.vulpecula.bacikal.quest.*
 import top.lanscarlos.vulpecula.config.bindConfigSection
+import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 
 /**
@@ -49,6 +50,14 @@ object DefaultBacikalService : BacikalService {
 
     override fun buildSimpleQuest(name: String, func: Consumer<BacikalBlockBuilder>): BacikalQuest {
         return DefaultQuestBuilder(name).also { it.appendBlock(name, func) }.build()
+    }
+
+    override fun executeQuest(quest: BacikalQuest): CompletableFuture<*> {
+        TODO("Not yet implemented")
+    }
+
+    override fun terminateQuest(quest: BacikalQuest) {
+        TODO("Not yet implemented")
     }
 
 }

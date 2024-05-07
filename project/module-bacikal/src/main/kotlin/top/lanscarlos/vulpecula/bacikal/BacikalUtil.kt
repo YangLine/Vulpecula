@@ -8,6 +8,7 @@ import top.lanscarlos.vulpecula.bacikal.quest.BacikalBlockBuilder
 import top.lanscarlos.vulpecula.bacikal.quest.BacikalQuest
 import top.lanscarlos.vulpecula.bacikal.quest.BacikalQuestBuilder
 import top.lanscarlos.vulpecula.bacikal.quest.DefaultQuestBuilder
+import top.lanscarlos.vulpecula.config.DynamicConfig
 
 /**
  * Vulpecula

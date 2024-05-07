@@ -2,7 +2,6 @@ package top.lanscarlos.vulpecula.core.modularity.pipeline
 
 import org.bukkit.event.player.PlayerMoveEvent
 import top.lanscarlos.vulpecula.config.DynamicConfig
-import top.lanscarlos.vulpecula.core.modularity.AbstractPipeline
 
 /**
  * Vulpecula

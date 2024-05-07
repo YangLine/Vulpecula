@@ -12,7 +12,8 @@ import java.util.*
  */
 enum class BacikalError {
 
-    SYMBOL_NOT_CLOSED; // 符号未闭合
+    SYMBOL_NOT_CLOSED, // 符号未闭合
+    UNKNOWN_ACTION; // 未知语句
 
     fun create(vararg args: Any?): LocalizedException {
         return LocalizedException.of("bacikal-error." + name.lowercase(Locale.getDefault()).replace("_", "-"), *args)

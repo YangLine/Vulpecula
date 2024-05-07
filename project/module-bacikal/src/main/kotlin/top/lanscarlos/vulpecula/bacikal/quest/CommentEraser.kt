@@ -10,9 +10,23 @@ import top.lanscarlos.vulpecula.config.bindConfigSection
  * @author Lanscarlos
  * @since 2023-08-21 21:16
  */
-class CommentEraser : BacikalQuestTransfer {
+object CommentEraser : BacikalQuestTransfer {
 
-    override val name = "comment-eraser"
+    val REGEX_COMMENT by bindConfigSection("bacikal.comment-pattern") { value ->
+        when (value) {
+            is String -> value.toRegex()
+            is Array<*> -> value.mapNotNull { it?.toString() }.joinToString(separator = "|").toRegex()
+            is Collection<*> -> value.mapNotNull { it?.toString() }.joinToString(separator = "|").toRegex()
+            is Map<*, *>,
+            is ConfigurationSection -> {
+                val section = if (value is ConfigurationSection) value.toMap() else value as Map<*, *>
+                val single = section["single-line"]?.toString() ?: "(?<!\\\\)//[^\\n]*(?=\\n|\\r)"
+                val multi = section["multi-line"]?.toString() ?: "(?<!\\\\)/\\*[^(\\*/)]*\\*/"
+                "$single|$multi".toRegex()
+            }
+            else -> null
+        }
+    }
 
     override fun transfer(source: StringBuilder) {
         val regex = REGEX_COMMENT ?: return
@@ -20,22 +34,4 @@ class CommentEraser : BacikalQuestTransfer {
         source.append(result)
     }
 
-    companion object {
-
-        val REGEX_COMMENT by bindConfigSection("bacikal.comment-pattern") { value ->
-            when (value) {
-                is String -> value.toRegex()
-                is Array<*> -> value.mapNotNull { it?.toString() }.joinToString(separator = "|").toRegex()
-                is Collection<*> -> value.mapNotNull { it?.toString() }.joinToString(separator = "|").toRegex()
-                is Map<*, *>,
-                is ConfigurationSection -> {
-                    val section = if (value is ConfigurationSection) value.toMap() else value as Map<*, *>
-                    val single = section["single-line"]?.toString() ?: "(?<!\\\\)//[^\\n]*(?=\\n|\\r)"
-                    val multi = section["multi-line"]?.toString() ?: "(?<!\\\\)/\\*[^(\\*/)]*\\*/"
-                    "$single|$multi".toRegex()
-                }
-                else -> null
-            }
-        }
-    }
 }

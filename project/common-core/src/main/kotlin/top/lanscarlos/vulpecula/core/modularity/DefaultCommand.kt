@@ -58,14 +58,14 @@ class DefaultCommand(
     /**
      * 指令结构
      * */
-    private val structure: Map<String, DefaultCommandBuilder> by config.read("structure") { value ->
+    private val structure: Map<String, DefaultCommandComponent> by config.read("structure") { value ->
         val section = value as? ConfigurationSection ?: error("Invalid structure at command \"$id\"")
-        val nodes = mutableMapOf<String, DefaultCommandBuilder>()
+        val nodes = mutableMapOf<String, DefaultCommandComponent>()
 
         // 加载所有节点
         for (key in section.getKeys(false)) {
             val node = section.getConfigurationSection(key) ?: continue
-            nodes[key] = DefaultCommandBuilder(this, key, node)
+            nodes[key] = DefaultCommandComponent(this, key, node)
         }
 
         // 处理父子节点关系

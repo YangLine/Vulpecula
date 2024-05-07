@@ -2,8 +2,9 @@ package top.lanscarlos.vulpecula.applicative
 
 import org.bukkit.Bukkit
 import org.bukkit.entity.HumanEntity
+import org.bukkit.entity.Player
 import org.bukkit.inventory.Inventory
-import taboolib.platform.type.BukkitPlayer
+import taboolib.common.platform.ProxyPlayer
 
 /**
  * Vulpecula
@@ -18,7 +19,7 @@ class InventoryApplicative(source: Any) : AbstractApplicative<Inventory>(source)
         return when (source) {
             is Inventory -> source
             is HumanEntity -> source.inventory
-            is BukkitPlayer -> source.player.inventory
+            is ProxyPlayer -> source.castSafely<Player>()?.inventory
             is String -> {
                 Bukkit.getPlayerExact(source)?.inventory
             }

@@ -1,46 +1,49 @@
-val taboolib_version: String by project
-
-plugins {
-    id("io.izzel.taboolib") version "1.50"
-}
 
 taboolib {
-    description {
-        contributors {
-            name("Lanscarlos")
-        }
-        desc("A Kether Script Extension System for TabooLib")
-        dependencies {
-            name("Adyeshach").optional(true)
-            name("Chemdah").optional(true)
-            name("DungeonPlus").optional(true)
-            name("Planners").optional(true)
-            name("Invero").optional(true)
-            name("Zaphkiel").optional(true)
-
-            name("PlaceholderAPI").optional(true)
-            name("LuckPerms").optional(true)
-        }
-    }
-
-    install("common")
-    install("common-5")
-    install("module-chat")
-    install("module-configuration")
-    install("module-database")
-    install("module-effect")
-    install("module-kether")
-    install("module-lang")
-    install("module-metrics")
-    install("module-nms")
-    install("module-nms-util")
-    install("expansion-command-helper")
-    install("expansion-javascript")
-    install("platform-bukkit")
-    classifier = null
-    version = taboolib_version
-    options("skip-minimize", "keep-kotlin-module", "skip-taboolib-relocate")
+    subproject = true
 }
+
+//plugins {
+//    id("io.izzel.taboolib") version "1.60"
+//}
+
+//taboolib {
+//    description {
+//        contributors {
+//            name("Lanscarlos")
+//        }
+//        desc("A Kether Script Extension System for TabooLib")
+//        dependencies {
+//            name("Adyeshach").optional(true)
+//            name("Chemdah").optional(true)
+//            name("DungeonPlus").optional(true)
+//            name("Planners").optional(true)
+//            name("Invero").optional(true)
+//            name("Zaphkiel").optional(true)
+//
+//            name("PlaceholderAPI").optional(true)
+//            name("LuckPerms").optional(true)
+//        }
+//    }
+//
+////    install("common")
+////    install("common-5")
+////    install("module-chat")
+////    install("module-configuration")
+////    install("module-database")
+////    install("module-effect")
+////    install("module-kether")
+////    install("module-lang")
+////    install("module-metrics")
+////    install("module-nms")
+////    install("module-nms-util")
+////    install("expansion-command-helper")
+////    install("expansion-javascript")
+////    install("platform-bukkit")
+////    classifier = null
+////    version = taboolib_version
+////    options("skip-minimize", "keep-kotlin-module", "skip-taboolib-relocate")
+//}
 
 dependencies {
     compileOnly(project(":project:module-volatile"))

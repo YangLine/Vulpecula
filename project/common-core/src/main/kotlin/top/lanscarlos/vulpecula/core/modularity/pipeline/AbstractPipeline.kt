@@ -1,4 +1,4 @@
-package top.lanscarlos.vulpecula.core.modularity
+package top.lanscarlos.vulpecula.core.modularity.pipeline
 
 import org.bukkit.event.Event
 import taboolib.common.LifeCycle
@@ -9,11 +9,10 @@ import top.lanscarlos.vulpecula.config.DynamicConfig
 import top.lanscarlos.vulpecula.modularity.DispatcherPipeline
 import java.lang.reflect.ParameterizedType
 import java.util.function.Supplier
-import kotlin.reflect.KClass
 
 /**
  * Vulpecula
- * top.lanscarlos.vulpecula.core.modularity
+ * top.lanscarlos.vulpecula.core.modularity.pipeline
  *
  * @author Lanscarlos
  * @since 2023-12-28 01:10

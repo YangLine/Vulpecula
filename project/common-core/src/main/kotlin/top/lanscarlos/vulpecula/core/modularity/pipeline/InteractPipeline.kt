@@ -4,7 +4,6 @@ import org.bukkit.event.block.Action
 import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.EquipmentSlot
 import top.lanscarlos.vulpecula.config.DynamicConfig
-import top.lanscarlos.vulpecula.core.modularity.AbstractPipeline
 
 /**
  * Vulpecula

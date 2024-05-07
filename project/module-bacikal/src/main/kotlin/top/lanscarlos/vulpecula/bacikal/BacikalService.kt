@@ -1,6 +1,7 @@
 package top.lanscarlos.vulpecula.bacikal
 
 import top.lanscarlos.vulpecula.bacikal.quest.*
+import java.util.concurrent.CompletableFuture
 import java.util.function.Consumer
 
 /**
@@ -21,5 +22,9 @@ interface BacikalService {
     fun buildQuest(name: String, func: Consumer<BacikalQuestBuilder>): BacikalQuest
 
     fun buildSimpleQuest(name: String, func: Consumer<BacikalBlockBuilder>): BacikalQuest
+
+    fun executeQuest(quest: BacikalQuest): CompletableFuture<*>
+
+    fun terminateQuest(quest: BacikalQuest)
 
 }

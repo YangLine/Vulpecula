@@ -1,6 +1,9 @@
 
 # bacikal 配置
 bacikal:
+  # 是否启用符号闭合检测
+  analysis-symbol-closure: true
+
   # 编译器
   compiler: 'bacikal'
   # 执行器

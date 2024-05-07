@@ -9,12 +9,15 @@ import taboolib.common.platform.function.registerBukkitListener
 import taboolib.common5.Baffle
 import taboolib.common5.FileWatcher
 import taboolib.library.configuration.ConfigurationSection
+import top.lanscarlos.vulpecula.bacikal.Bacikal
 import top.lanscarlos.vulpecula.bacikal.bacikalQuest
+import top.lanscarlos.vulpecula.bacikal.quest.AnalysisQuestCompiler
 import top.lanscarlos.vulpecula.bacikal.quest.BacikalQuest
 import top.lanscarlos.vulpecula.bacikal.quest.FragmentReplacer
 import top.lanscarlos.vulpecula.config.DynamicConfig
 import top.lanscarlos.vulpecula.config.bindConfigSection
 import top.lanscarlos.vulpecula.core.VulpeculaContext
+import top.lanscarlos.vulpecula.core.modularity.pipeline.AbstractPipeline
 import top.lanscarlos.vulpecula.modularity.DispatcherPipeline
 import top.lanscarlos.vulpecula.modularity.ModularDispatcher
 import top.lanscarlos.vulpecula.modularity.Module
@@ -196,14 +199,14 @@ class DefaultDispatcher(
      * 构建任务
      * */
     fun buildQuest(): BacikalQuest {
-        return bacikalQuest(id) {
-            artifactFile = artifact
-            eraseComments = this@DefaultDispatcher.eraseComments
-            escapeUnicode = this@DefaultDispatcher.escapeUnicode
+        return Bacikal.buildQuest(id) {
+            it.artifactFile = artifact
+            it.eraseComments = eraseComments
+            it.escapeUnicode = escapeUnicode
             // 添加碎片替换
-            appendTransfer(FragmentReplacer(fragments))
+            it.appendTransfer(FragmentReplacer(fragments))
 
-            appendMainBlock {
+            it.appendMainBlock {
                 if (ACTION_SCRIPT_HEADER != null) {
                     // 如果存在脚本语句, 则添加脚本语句
                     for (handler in handlers) {
@@ -213,6 +216,8 @@ class DefaultDispatcher(
                 appendPreprocessor(preprocessing)
                 appendPostprocessor(postprocessing)
             }
+
+            it.compiler = AnalysisQuestCompiler(config)
         }
     }
 

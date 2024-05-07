@@ -56,16 +56,24 @@ abstract class AbstractDynamicConfig(override val file: File, val config: Config
         onAfterReload = runnable
     }
 
+    override fun getKeys(deep: Boolean): Set<String> {
+        return config.getKeys(deep)
+    }
+
+    override fun getKeys(path: String, deep: Boolean): Set<String> {
+        return config.getConfigurationSection(path)?.getKeys(deep) ?: emptySet()
+    }
+
     override fun get(path: String): Any? {
         return config[path]
     }
 
-    override fun readKeys(deep: Boolean): Set<String> {
-        return config.getKeys(deep)
+    override fun getString(path: String): String? {
+        return config.getString(path)
     }
 
-    override fun readKeys(path: String, deep: Boolean): Set<String> {
-        return config.getConfigurationSection(path)?.getKeys(deep) ?: emptySet()
+    override fun getString(path: String, def: String): String {
+        return getString(path) ?: def
     }
 
     override fun <T> read(path: String, transfer: Function<Any?, T>): DynamicSection<T> {

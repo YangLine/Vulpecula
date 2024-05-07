@@ -71,7 +71,7 @@ class DefaultModule(override val directory: File) : Module, Consumer<Pair<File, 
 
                 // 加载新的调度器
                 val config = YamlDynamicConfig(file)
-                for (key in config.readKeys(false)) {
+                for (key in config.getKeys(false)) {
                     val dispatcher = DefaultDispatcher(this, key, config)
                     this.dispatchers[key] = dispatcher
 
@@ -171,7 +171,7 @@ class DefaultModule(override val directory: File) : Module, Consumer<Pair<File, 
 
             // 加载文件
             val config = YamlDynamicConfig(file)
-            for (key in config.readKeys(false)) {
+            for (key in config.getKeys(false)) {
                 val dispatcher = DefaultDispatcher(this, key, config)
                 dispatchers[key] = dispatcher
 

@@ -1,16 +1,11 @@
-val taboolib_version: String by project
-
-plugins {
-    id("io.izzel.taboolib") version "1.56"
-}
 
 taboolib {
+    subproject = false
     description {
-        name = rootProject.name
+        name(rootProject.name)
         contributors {
             name("Lanscarlos")
         }
-        desc("A Kether Multifaceted Extension System for TabooLib.")
         dependencies {
             name("Adyeshach").optional(true)
             name("Chemdah").optional(true)
@@ -23,9 +18,4 @@ taboolib {
             name("LuckPerms").optional(true)
         }
     }
-
-    install("common", "platform-bukkit")
-    options("skip-minimize", "keep-kotlin-module", "skip-taboolib-relocate")
-    classifier = null
-    version = taboolib_version
 }

@@ -23,7 +23,7 @@ class DefaultQuestBuilder(override var name: String) : BacikalQuestBuilder {
 
     override val namespace = Bacikal.service.compileNamespace.toMutableList()
 
-    override val transfers = linkedMapOf<String, BacikalQuestTransfer>()
+    override val transfers = mutableListOf<BacikalQuestTransfer>()
 
     override var compiler = Bacikal.service.questCompiler
 
@@ -36,10 +36,10 @@ class DefaultQuestBuilder(override var name: String) : BacikalQuestBuilder {
     override fun build(): BacikalQuest {
 
         if (eraseComments) {
-            appendTransfer(CommentEraser())
+            appendTransfer(CommentEraser)
         }
         if (escapeUnicode) {
-            appendTransfer(UnicodeEscalator())
+            appendTransfer(UnicodeEscalator)
         }
 
         // 构建源码
@@ -49,7 +49,7 @@ class DefaultQuestBuilder(override var name: String) : BacikalQuestBuilder {
         }
 
         // 转换
-        for (transfer in transfers.values) {
+        for (transfer in transfers) {
             transfer.transfer(source)
         }
 
@@ -97,6 +97,6 @@ class DefaultQuestBuilder(override var name: String) : BacikalQuestBuilder {
     }
 
     override fun appendTransfer(transfer: BacikalQuestTransfer) {
-        transfers[transfer.name] = transfer
+        transfers += transfer
     }
 }

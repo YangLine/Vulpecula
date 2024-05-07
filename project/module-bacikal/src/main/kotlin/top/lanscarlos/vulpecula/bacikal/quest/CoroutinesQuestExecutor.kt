@@ -45,8 +45,7 @@ object CoroutinesQuestExecutor : BacikalQuestExecutor {
             return InnerRootFrame(context)
         }
 
-        inner class InnerRootFrame(context: ScriptContext) :
-            AbstractFrame(null, LinkedList(), SimpleVarTable(null), context) {
+        inner class InnerRootFrame(context: ScriptContext) : AbstractFrame(null, LinkedList(), SimpleVarTable(null), context) {
 
             var block: Quest.Block? = null
             var current: Int = -1

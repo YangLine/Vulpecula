@@ -1,11 +1,11 @@
 package top.lanscarlos.vulpecula.core.command
 
+import org.bukkit.entity.Player
 import taboolib.common.platform.ProxyCommandSender
 import taboolib.common.platform.command.component.CommandComponent
 import taboolib.common.platform.function.submit
 import taboolib.common5.format
 import taboolib.module.kether.printKetherErrorMessage
-import taboolib.platform.type.BukkitPlayer
 import top.lanscarlos.vulpecula.applicative.PrimitiveApplicative.applicativeInt
 import top.lanscarlos.vulpecula.bacikal.toBacikalQuest
 import top.lanscarlos.vulpecula.config.bindConfigSection
@@ -37,9 +37,9 @@ object VulpeculaTimingCommand {
                         repeat(repeat) { index ->
                             futures[index] = quest.runActions {
                                 this.sender = sender
-                                if (sender is BukkitPlayer) {
-                                    setVariable("player", sender.player)
-                                    setVariable("hand", sender.player.equipment?.itemInMainHand)
+                                sender.castSafely<Player>()?.let { player ->
+                                    setVariable("player", player)
+                                    setVariable("hand", player.equipment?.itemInMainHand)
                                 }
                             }
                         }
